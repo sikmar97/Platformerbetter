@@ -6,11 +6,11 @@ const GRAVITY = 25
 const MAX_FALL_SPEED = 900
 
 
-var doubleJump = 2
+var doubleJump = 1
  
 onready var anim_player = $AnimationPlayer
 onready var sprite = $Sprite
- 
+var jump_count = 2
 var y_velo = 0
 var facing_right = true
  
@@ -25,8 +25,20 @@ func _physics_process(delta):
     var grounded = is_on_floor()
     y_velo += GRAVITY
 	
+	
+	
+    if jump_count > 0 and Input.is_action_just_pressed("jump"):
+        y_velo = -JUMP_FORCE
+        jump_count -= 1
+    if grounded and y_velo >= 5:
+        y_velo = 5
+    if y_velo > MAX_FALL_SPEED:
+        y_velo = MAX_FALL_SPEED
+	
+	
     if grounded and Input.is_action_just_pressed("jump"):
         y_velo = -JUMP_FORCE
+        jump_count -= 1
     if grounded and y_velo >= 5:
         y_velo = 5
     if y_velo > MAX_FALL_SPEED:
@@ -37,6 +49,10 @@ func _physics_process(delta):
     if !facing_right and move_dir > 0:
         flip()
    
+    if grounded:
+       jump_count = 1
+
+
     if grounded:
         if move_dir == 0:
             play_anim("idle")

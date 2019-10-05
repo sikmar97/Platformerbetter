@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.024, 11.3733 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 radius = 7.82798
 
 [sub_resource type="Animation" id=3]
@@ -70,7 +70,7 @@ shape = SubResource( 1 )
 
 [node name="circCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 1.06013, 5.93675 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Walk = SubResource( 3 )

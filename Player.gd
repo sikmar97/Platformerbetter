@@ -6,11 +6,10 @@ const GRAVITY = 25
 const MAX_FALL_SPEED = 900
 
 
-var doubleJump = 1
  
 onready var anim_player = $AnimationPlayer
 onready var sprite = $Sprite
-var jump_count = 2
+var jump_count = 1
 var y_velo = 0
 var facing_right = true
  

@@ -1,18 +1,28 @@
 extends KinematicBody2D
  
+
+export var stompspeed: = Vector2(400.0, 500.0)
+var _velocity: = Vector2.ZERO
+export var stomp_impulse: = 600.0
+
+func _on_StompArea2D_area_entered(area: Area2D) -> void:
+	pass
+	
+export (bool) var Player = true
 const MOVE_SPEED = 300
 const JUMP_FORCE = 500
 const GRAVITY = 25
 const MAX_FALL_SPEED = 900
 
 
- 
 onready var anim_player = $AnimationPlayer
 onready var sprite = $Sprite
 var jump_count = 1
 var y_velo = 0
 var facing_right = true
  
+
+
 func _physics_process(delta):
     var move_dir = 0
     if Input.is_action_pressed("move_right"):
@@ -20,7 +30,8 @@ func _physics_process(delta):
     if Input.is_action_pressed("move_left"):
         move_dir -= 1
     move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo), Vector2(0, -1))
-   
+
+
     var grounded = is_on_floor()
     y_velo += GRAVITY
 	
@@ -69,6 +80,8 @@ func play_anim(anim_name):
         return
     anim_player.play(anim_name)
 	
+
 	
 	
-	
+
+
